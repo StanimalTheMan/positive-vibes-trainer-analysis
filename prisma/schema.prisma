@@ -33,7 +33,7 @@ model JournalEntry {
 
   analysis Analysis?
 
-  @@index([userId])
+  @@unique([userId, id])
 }
 
 model Analysis {
@@ -51,6 +51,7 @@ model Analysis {
   positiveSentimentScore Decimal? @db.Decimal(10, 2)
   negativeSentimentScore Decimal? @db.Decimal(10, 2)
   neutralSentimentScore  Decimal? @db.Decimal(10, 2)
+  mixedSentimentScore    Decimal? @db.Decimal(10, 2)
 
   @@unique([entryId])
 }
