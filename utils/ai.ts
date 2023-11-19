@@ -1,6 +1,22 @@
 import { OpenAI } from 'langchain/llms/openai'
 import { StructuredOutputParser } from 'langchain/output_parsers'
+import {
+  ComprehendClient,
+  BatchDetectSentimentCommand,
+  DetectSentimentCommand,
+} from '@aws-sdk/client-comprehend' // ES Modules import
 import z from 'zod'
+// require('dotenv').config()
+
+const config = {
+  region: process.env.AWS_REGION,
+  credentials: {
+    accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+  },
+}
+
+const client = new ComprehendClient(config)
 
 const parser = StructuredOutputParser.fromZodSchema(
   z.object({
@@ -22,8 +38,17 @@ const parser = StructuredOutputParser.fromZodSchema(
 )
 
 export const analyze = async (prompt) => {
-  const model = new OpenAI({ temperature: 0, modelName: 'gpt-3.5-turbo' })
-  const result = await model.call(prompt)
+  //   const model = new OpenAI({ temperature: 0, modelName: 'gpt-3.5-turbo' })
+  //   const result = await model.call(prompt)
 
-  console.log(result)
+  //   console.log(result)
+
+  // AWS Comprehend
+  const input = {
+    Text: prompt,
+    LanguageCode: 'en',
+  }
+  const command = new DetectSentimentCommand(input)
+  const response = await client.send(command)
+  console.log(response)
 }
