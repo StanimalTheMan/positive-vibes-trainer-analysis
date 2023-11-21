@@ -1,3 +1,4 @@
+import { analyze } from '@/utils/ai'
 import { getUserByClerkID } from '@/utils/auth'
 import { prisma } from '@/utils/db'
 import { revalidatePath } from 'next/cache'
@@ -9,6 +10,19 @@ export const POST = async () => {
     data: {
       userId: user.id,
       content: 'Write something positive about your day!',
+    },
+  })
+
+  const analysis = await analyze(entry.content)
+  console.log(analysis)
+  await prisma.analysis.create({
+    data: {
+      entryId: entry.id,
+      mood: analysis.Sentiment,
+      positiveSentimentScore: analysis.SentimentScore?.Positive,
+      negativeSentimentScore: analysis.SentimentScore?.Negative,
+      neutralSentimentScore: analysis.SentimentScore?.Neutral,
+      mixedSentimentScore: analysis.SentimentScore?.Mixed,
     },
   })
 

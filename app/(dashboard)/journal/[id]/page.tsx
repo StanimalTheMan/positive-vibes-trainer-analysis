@@ -19,10 +19,11 @@ const getEntry = async (id) => {
 const EntryPage = async ({ params }) => {
   const entry = await getEntry(params.id)
   const analysisData = [
-    { name: 'Summary', value: '' },
-    { name: 'Subject', value: '' },
-    { name: 'Mood', value: '' },
-    { name: 'Negative', value: 'False' },
+    { name: 'Mood', value: 'Positive' },
+    { name: 'Positive Sentiment Score', value: 0 },
+    { name: 'Negative Sentiment Score', value: 0 },
+    { name: 'Neutral Sentiment Score', value: 0 },
+    { name: 'Mixed Sentiment Score', value: 0 },
   ]
   return (
     <div className="h-full w-full grid grid-cols-3">

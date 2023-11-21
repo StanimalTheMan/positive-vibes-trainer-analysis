@@ -16,16 +16,6 @@ const getEntries = async () => {
     },
   })
 
-  // await analyze(
-  //   `I'm going to give you a journal entry, I want you to analyze for a few things.  I need the mood, a summary, what the subject is, and a color representing the mood.  You need to respond back with formatted JSON like so: {"mood", "", "subject": "", "color": "", "negative": ""}.
-
-  //   entry:
-  //   I'm gonna end myself.
-  //   `
-  await analyze(
-    `I got laid off from my software job on on november 11 2022.  now it's november 19 2023.  I am screwed. i hate my life.`
-  )
-
   return entries
 }
 

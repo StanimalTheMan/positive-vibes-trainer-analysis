@@ -37,7 +37,7 @@ const parser = StructuredOutputParser.fromZodSchema(
   })
 )
 
-export const analyze = async (prompt) => {
+export const analyze = async (content) => {
   //   const model = new OpenAI({ temperature: 0, modelName: 'gpt-3.5-turbo' })
   //   const result = await model.call(prompt)
 
@@ -45,10 +45,10 @@ export const analyze = async (prompt) => {
 
   // AWS Comprehend
   const input = {
-    Text: prompt,
+    Text: content,
     LanguageCode: 'en',
   }
   const command = new DetectSentimentCommand(input)
   const response = await client.send(command)
-  console.log(response)
+  return response
 }
