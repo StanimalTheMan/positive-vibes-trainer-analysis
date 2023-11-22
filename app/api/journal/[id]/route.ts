@@ -23,7 +23,7 @@ export const PATCH = async (request: Request, { params }) => {
       },
     })
 
-    await prisma.analysis.upsert({
+    const updated = await prisma.analysis.upsert({
       where: {
         entryId: updatedEntry.id,
       },
@@ -50,7 +50,7 @@ export const PATCH = async (request: Request, { params }) => {
       },
     })
 
-    return NextResponse.json({ data: updatedEntry })
+    return NextResponse.json({ data: { ...updatedEntry, analysis: updated } })
   }
 
   // did not update entry since user typed negative stuff per AWS Comprehend
