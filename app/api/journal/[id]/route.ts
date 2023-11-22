@@ -29,6 +29,7 @@ export const PATCH = async (request: Request, { params }) => {
       },
       create: {
         entryId: updatedEntry.id,
+        userId: user.id,
         mood: updatedEntryContentAnalysis.Sentiment,
         positiveSentimentScore:
           updatedEntryContentAnalysis.SentimentScore?.Positive,

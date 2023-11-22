@@ -18,6 +18,7 @@ export const POST = async () => {
   await prisma.analysis.create({
     data: {
       entryId: entry.id,
+      userId: user.id,
       mood: analysis.Sentiment,
       positiveSentimentScore: analysis.SentimentScore?.Positive,
       negativeSentimentScore: analysis.SentimentScore?.Negative,
