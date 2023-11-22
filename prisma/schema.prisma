@@ -58,5 +58,5 @@ model Analysis {
   mixedSentimentScore    Decimal? @db.Decimal(10, 2)
 
   @@unique([entryId])
-  @@unique([userId])
+  @@index([userId])
 }
