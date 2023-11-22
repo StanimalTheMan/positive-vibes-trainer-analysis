@@ -11,6 +11,9 @@ const getEntry = async (id) => {
         id,
       },
     },
+    include: {
+      analysis: true,
+    },
   })
 
   return entry
@@ -18,13 +21,32 @@ const getEntry = async (id) => {
 
 const EntryPage = async ({ params }) => {
   const entry = await getEntry(params.id)
+
+  const {
+    mood,
+    positiveSentimentScore,
+    negativeSentimentScore,
+    neutralSentimentScore,
+    mixedSentimentScore,
+  } = entry.analysis
+
   const analysisData = [
-    { name: 'Mood', value: 'Positive' },
-    { name: 'Positive Sentiment Score', value: 0 },
-    { name: 'Negative Sentiment Score', value: 0 },
-    { name: 'Neutral Sentiment Score', value: 0 },
-    { name: 'Mixed Sentiment Score', value: 0 },
+    { name: 'Mood', value: mood },
+    {
+      name: 'Positive Sentiment Score',
+      value: `${positiveSentimentScore * 100}%`,
+    },
+    {
+      name: 'Negative Sentiment Score',
+      value: `${negativeSentimentScore * 100}%`,
+    },
+    {
+      name: 'Neutral Sentiment Score',
+      value: `${neutralSentimentScore * 100}%`,
+    },
+    { name: 'Mixed Sentiment Score', value: `${mixedSentimentScore * 100}%` },
   ]
+
   return (
     <div className="h-full w-full grid grid-cols-3">
       <div className="col-span-2">
