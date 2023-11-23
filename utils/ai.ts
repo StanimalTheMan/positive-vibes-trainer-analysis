@@ -2,7 +2,6 @@ import { OpenAI } from 'langchain/llms/openai'
 import { StructuredOutputParser } from 'langchain/output_parsers'
 import {
   ComprehendClient,
-  BatchDetectSentimentCommand,
   DetectSentimentCommand,
 } from '@aws-sdk/client-comprehend' // ES Modules import
 import z from 'zod'

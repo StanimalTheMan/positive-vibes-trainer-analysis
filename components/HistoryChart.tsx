@@ -20,7 +20,9 @@ const CustomToolTip = ({ payload, label, active }) => {
           style={{ background: analysis.color }}
         ></div>
         <p className="label text-sm text-black/30">{dateLabel}</p>
-        <p className="intro text-xl uppercase">{analysis.mood}</p>
+        <p className="intro text-xl uppercase">
+          {analysis.mood}: {analysis.positiveSentimentScore * 100}%
+        </p>
       </div>
     )
   }
