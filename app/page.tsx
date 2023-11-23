@@ -10,8 +10,8 @@ export default async function Home() {
       <div className="w-full max-w-[600px] mx-auto">
         <h1 className="text-6xl mb-4">The best Journal app, period.</h1>
         <p className="2-xl text-white/60 mb-4">
-          This is the best app for tracking your mood throughout your life. All
-          you have to do is be honest.
+          This is the best app for tracking your positivity in your day to day
+          life. All you have to do is be honest and try to see the positives.
         </p>
         <div>
           <Link href={href}>
