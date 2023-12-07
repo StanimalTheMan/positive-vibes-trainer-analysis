@@ -10,7 +10,10 @@ export const PATCH = async (request: Request, { params }) => {
 
   const updatedEntryContentAnalysis = await analyze(content)
   console.log(updatedEntryContentAnalysis)
-  if (updatedEntryContentAnalysis.Sentiment == 'POSITIVE') {
+  if (
+    updatedEntryContentAnalysis.Sentiment == 'POSITIVE' &&
+    updatedEntryContentAnalysis.SentimentScore.Positive >= 0.5
+  ) {
     const updatedEntry = await prisma.journalEntry.update({
       where: {
         userId_id: {
