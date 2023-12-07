@@ -15,8 +15,8 @@ const DashboardLayout = ({ children }) => {
   const router = useRouter()
 
   return (
-    <div className="h-screen w-screen relative">
-      <aside className="absolute w-[200px] top-0 left-0 h-full border-r border-black/10">
+    <div className="h-screen w-screen bg-black relative">
+      <aside className="absolute w-[200px] top-0 left-0 h-full border-r text-white border-white/70">
         <div>Positive Vibes Trainer Analysis</div>
         <ul>
           {links.map((link) => (
@@ -27,7 +27,7 @@ const DashboardLayout = ({ children }) => {
         </ul>
       </aside>
       <div className="ml-[200px] h-full">
-        <header className="h-[60px] border-b border-black/10">
+        <header className="h-[60px] border-b text-white border-white/70">
           <div className="h-full w-full px-6 flex items-center justify-end">
             <button onClick={() => signOut(() => router.push('/journal'))}>
               Sign out

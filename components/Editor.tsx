@@ -58,29 +58,31 @@ const Editor = ({ entry }) => {
   })
   return (
     <div className="w-full h-full grid grid-cols-3">
-      <div className="col-span-2">
+      <div className="col-span-2 text-white">
         {isLoading && <div>...loading</div>}
         {updatedNotification != '' && <header>{updatedNotification}</header>}
         <textarea
-          className="w-full h-full p-8 text-xl outline-none"
+          className="w-full h-full p-8 text-black text-xl outline-none"
           value={value}
           onChange={(e) => setValue(e.target.value)}
         />
       </div>
 
-      <div className="border-l border-black/10">
-        <div className="bg-blue-300 px-6 py-10">
-          <h2 className="text-2xl">Analysis</h2>
+      <div className="border-l border-white/70">
+        <div className="bg-black px-6 py-10">
+          <h2 className="text-2xl text-white">Analysis</h2>
         </div>
         <div>
           <ul>
             {analysisData.map((item) => (
               <li
                 key={item.name}
-                className="px-2 py-4 flex items-center justify-between border-b border-t border-black/10"
+                className="px-2 py-4 flex items-center justify-between border-b border-t border-white/70"
               >
-                <span className="text-lg font-semibold">{item.name}</span>
-                <span>{item.value}</span>
+                <span className="text-lg text-white font-semibold">
+                  {item.name}
+                </span>
+                <span className="text-white">{item.value}</span>
               </li>
             ))}
           </ul>
